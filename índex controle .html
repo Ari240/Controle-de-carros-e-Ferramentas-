@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Controle - Carros e Ferramentas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- TELA INICIAL PRINCIPAL -->
+        <div id="telaMenuPrincipal" class="tela ativa">
+            <div class="container">
+                <header class="header">
+                    <h1 class="titulo">📦 Controle de Recursos</h1>
+                    <p class="subtitulo">Carros e Ferramentas da Empresa</p>
+                </header>
+
+                <nav class="menu-principal">
+                    <button class="btn btn-grande btn-carros" onclick="irParaModuloCarros()">
+                        <span class="icone">🚗</span>
+                        <span>Módulo de Carros</span>
+                    </button>
+                    <button class="btn btn-grande btn-ferramentas" onclick="irParaModuloFerramentas()">
+                        <span class="icone">🔧</span>
+                        <span>Módulo de Ferramentas</span>
+                    </button>
+                </nav>
+
+                <footer class="rodape">
+                    <p>Todos os dados são salvos localmente no seu dispositivo</p>
+                </footer>
+            </div>
+        </div>
+
+        <!-- ===== MÓDULO DE CARROS ===== -->
+
+        <!-- TELA INICIAL CARROS -->
+        <div id="telaMenuCarros" class="tela">
+            <div class="container">
+                <header class="header-volta">
+                    <button class="btn-voltar" onclick="voltarMenuPrincipal()">← Voltar</button>
+                    <h2>Módulo de Carros</h2>
+                </header>
+
+                <nav class="menu-modulo">
+                    <button class="btn btn-grande btn-primary" onclick="irParaTela('telaCadastroCarro')">
+                        <span class="icone">➕</span>
+                        <span>Cadastrar Carro</span>
+                    </button>
+                    <button class="btn btn-grande btn-success" onclick="irParaTela('telaRetiradaCarro')">
+                        <span class="icone">🔓</span>
+                        <span>Retirar Carro</span>
+                    </button>
+                    <button class="btn btn-grande btn-warning" onclick="irParaTela('telaDevolvCarro')">
+                        <span class="icone">🔐</span>
+                        <span>Devolver Carro</span>
+                    </button>
+                    <button class="btn btn-grande btn-info" onclick="irParaTela('telaListaCarro')">
+                        <span class="icone">📋</span>
+                        <span>Lista de Carros</span>
+                    </button>
+                    <button class="btn btn-grande btn-secondary" onclick="irParaTela('telaHistoricoCarro')">
+                        <span class="icone">📜</span>
+                        <span>Histórico</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- CADASTRO CARRO -->
+        <div id="telaCadastroCarro" class="tela">
+            <div class="container">
+                <header class="header-volta">
+                    <button class="btn-voltar" onclick="voltarParaMenuCarros()">← Voltar</button>
+                    <h2>Cadastrar Carro</h2>
+                </header>
+
+                <form id="formCadastroCarro" class="formulario">
+                    <div class="grupo-form">
+                        <label for="modeloCarro">Modelo do Carro *</label>
+                        <input type="text" id="modeloCarro" placeholder="Ex: Fiat Uno 1.0" required>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="placaCarro">Placa *</label>
+                        <input type="text" id="placaCarro" placeholder="Ex: ABC-1234" required>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="anoCarro">Ano *</label>
+                        <input type="number" id="anoCarro" placeholder="Ex: 2023" min="1990" max="2099" required>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="kmCarroAtual">KM Atual *</label>
+                        <input type="number" id="kmCarroAtual" placeholder="Ex: 50000" min="0" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-bloco">Salvar Carro</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- RETIRADA CARRO -->
+        <div id="telaRetiradaCarro" class="tela">
+            <div class="container">
+                <header class="header-volta">
+                    <button class="btn-voltar" onclick="voltarParaMenuCarros()">← Voltar</button>
+                    <h2>Retirar Carro</h2>
+                </header>
+
+                <form id="formRetiradaCarro" class="formulario">
+                    <div class="grupo-form">
+                        <label for="carroRetirada">Selecionar Carro *</label>
+                        <select id="carroRetirada" required>
+                            <option value="">-- Escolha um carro --</option>
+                        </select>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="nomeFuncCarro">Nome do Funcionário *</label>
+                        <input type="text" id="nomeFuncCarro" placeholder="Ex: João Silva" required>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="dataHoraRetiradaCarro">Data e Hora *</label>
+                        <input type="datetime-local" id="dataHoraRetiradaCarro" required>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="kmRetiradaCarro">KM na Retirada *</label>
+                        <input type="number" id="kmRetiradaCarro" placeholder="Ex: 50100" min="0" required>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="motivoCarro">Motivo da Retirada *</label>
+                        <input type="text" id="motivoCarro" placeholder="Ex: Visita ao cliente" required>
+                    </div>
+
+                    <fieldset class="checklist">
+                        <legend>Checklist Rápido</legend>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="pneusOkCarro">
+                            <label for="pneusOkCarro">Pneus ok?</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="documentosCarro">
+                            <label for="documentosCarro">Documentação ok?</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="carroLimpoCarro">
+                            <label for="carroLimpoCarro">Carro limpo?</label>
+                        </div>
+                    </fieldset>
+
+                    <button type="submit" class="btn btn-success btn-bloco">Confirmar Retirada</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- DEVOLUÇÃO CARRO -->
+        <div id="telaDevolvCarro" class="tela">
+            <div class="container">
+                <header class="header-volta">
+                    <button class="btn-voltar" onclick="voltarParaMenuCarros()">← Voltar</button>
+                    <h2>Devolver Carro</h2>
+                </header>
+
+                <form id="formDevolvCarro" class="formulario">
+                    <div class="grupo-form">
+                        <label for="carroDevolvido">Selecionar Carro Retirado *</label>
+                        <select id="carroDevolvido" required>
+                            <option value="">-- Escolha um carro em uso --</option>
+                        </select>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="dataHoraDevolvCarro">Data e Hora *</label>
+                        <input type="datetime-local" id="dataHoraDevolvCarro" required>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="kmDevolvCarro">KM na Devolução *</label>
+                        <input type="number" id="kmDevolvCarro" placeholder="Ex: 50150" min="0" required>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="carroLimpoDevCarro">Carro chegou limpo? *</label>
+                        <select id="carroLimpoDevCarro" required>
+                            <option value="">-- Selecione --</option>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="algumDanoCarro">Algum dano? *</label>
+                        <select id="algumDanoCarro" required onchange="mostrarCampoDanoCarro()">
+                            <option value="">-- Selecione --</option>
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
+                        </select>
+                    </div>
+
+                    <div id="descricaoDanoCarro" class="grupo-form" style="display: none;">
+                        <label for="descricaoDanoTextoCarro">Descreva o dano</label>
+                        <textarea id="descricaoDanoTextoCarro" placeholder="Descreva o dano encontrado..."></textarea>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="observacoesCarro">Observações</label>
+                        <textarea id="observacoesCarro" placeholder="Observações gerais..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-warning btn-bloco">Confirmar Devolução</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- LISTA CARROS -->
+        <div id="telaListaCarro" class="tela">
+            <div class="container">
+                <header class="header-volta">
+                    <button class="btn-voltar" onclick="voltarParaMenuCarros()">← Voltar</button>
+                    <h2>Lista de Carros</h2>
+                </header>
+
+                <div id="listaCarros" class="lista-items"></div>
+                <div id="mensagemVaziaCarros" class="mensagem-vazia">
+                    <p>Nenhum carro cadastrado ainda.</p>
+                    <button class="btn btn-primary" onclick="irParaTela('telaCadastroCarro')">Cadastrar Carro</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- HISTÓRICO CARROS -->
+        <div id="telaHistoricoCarro" class="tela">
+            <div class="container">
+                <header class="header-volta">
+                    <button class="btn-voltar" onclick="voltarParaMenuCarros()">← Voltar</button>
+                    <h2>Histórico de Carros</h2>
+                </header>
+
+                <div class="filtros">
+                    <button class="btn btn-pequeno" onclick="filtrarHistoricoCarro('todos')">Todos</button>
+                    <button class="btn btn-pequeno" onclick="filtrarHistoricoCarro('retirada')">Retiradas</button>
+                    <button class="btn btn-pequeno" onclick="filtrarHistoricoCarro('devolucao')">Devoluções</button>
+                </div>
+
+                <div id="listaHistoricoCarro" class="lista-items"></div>
+                <div id="mensagemHistoricoVazioCarros" class="mensagem-vazia">
+                    <p>Nenhum registro no histórico.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== MÓDULO DE FERRAMENTAS ===== -->
+
+        <!-- TELA INICIAL FERRAMENTAS -->
+        <div id="telaMenuFerramentas" class="tela">
+            <div class="container">
+                <header class="header-volta">
+                    <button class="btn-voltar" onclick="voltarMenuPrincipal()">← Voltar</button>
+                    <h2>Módulo de Ferramentas</h2>
+                </header>
+
+                <nav class="menu-modulo">
+                    <button class="btn btn-grande btn-primary" onclick="irParaTela('telaCadastroFerramenta')">
+                        <span class="icone">➕</span>
+                        <span>Cadastrar Ferramenta</span>
+                    </button>
+                    <button class="btn btn-grande btn-success" onclick="irParaTela('telaRegistroSaidaFerramenta')">
+                        <span class="icone">📤</span>
+                        <span>Registrar Saída</span>
+                    </button>
+                    <button class="btn btn-grande btn-warning" onclick="irParaTela('telaRegistroDevolucaoFerramenta')">
+                        <span class="icone">📥</span>
+                        <span>Registrar Devolução</span>
+                    </button>
+                    <button class="btn btn-grande btn-info" onclick="irParaTela('telaListaFerramenta')">
+                        <span class="icone">📋</span>
+                        <span>Lista de Ferramentas</span>
+                    </button>
+                    <button class="btn btn-grande btn-info" onclick="irParaTela('telaFerramentasEmUso')">
+                        <span class="icone">⚙️</span>
+                        <span>Ferramentas em Uso</span>
+                    </button>
+                    <button class="btn btn-grande btn-secondary" onclick="irParaTela('telaHistoricoFerramenta')">
+                        <span class="icone">📜</span>
+                        <span>Histórico Geral</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- CADASTRO FERRAMENTA -->
+        <div id="telaCadastroFerramenta" class="tela">
+            <div class="container">
+                <header class="header-volta">
+                    <button class="btn-voltar" onclick="voltarParaMenuFerramentas()">← Voltar</button>
+                    <h2>Cadastrar Ferramenta</h2>
+                </header>
+
+                <form id="formCadastroFerramenta" class="formulario">
+                    <div class="grupo-form">
+                        <label for="nomeFerramenta">Nome da Ferramenta *</label>
+                        <input type="text" id="nomeFerramenta" placeholder="Ex: Furadeira" required>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="codigoFerramenta">Código/Identificação *</label>
+                        <input type="text" id="codigoFerramenta" placeholder="Ex: FUR-001" required>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="condicaoFerramenta">Condição *</label>
+                        <select id="condicaoFerramenta" required>
+                            <option value="">-- Selecione --</option>
+                            <option value="nova">Nova</option>
+                            <option value="usada">Usada</option>
+                            <option value="precisa-reparar">Precisa Reparar</option>
+                        </select>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="observacoesFerramenta">Observações</label>
+                        <textarea id="observacoesFerramenta" placeholder="Observações sobre a ferramenta..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-bloco">Salvar Ferramenta</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- REGISTRO SAÍDA FERRAMENTA -->
+        <div id="telaRegistroSaidaFerramenta" class="tela">
+            <div class="container">
+                <header class="header-volta">
+                    <button class="btn-voltar" onclick="voltarParaMenuFerramentas()">← Voltar</button>
+                    <h2>Registrar Saída de Ferramenta</h2>
+                </header>
+
+                <form id="formRegistroSaidaFerramenta" class="formulario">
+                    <div class="grupo-form">
+                        <label for="ferramentaSaida">Selecionar Ferramenta *</label>
+                        <select id="ferramentaSaida" required>
+                            <option value="">-- Escolha uma ferramenta --</option>
+                        </select>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="nomeFuncSaidaFerramenta">Nome do Funcionário *</label>
+                        <input type="text" id="nomeFuncSaidaFerramenta" placeholder="Ex: João Silva" required>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="dataHoraSaidaFerramenta">Data e Hora *</label>
+                        <input type="datetime-local" id="dataHoraSaidaFerramenta" required>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="condicaoSaidaFerramenta">Condição ao Sair *</label>
+                        <select id="condicaoSaidaFerramenta" required>
+                            <option value="">-- Selecione --</option>
+                            <option value="nova">Nova</option>
+                            <option value="usada">Usada</option>
+                            <option value="precisa-reparar">Precisa Reparar</option>
+                        </select>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="observacoesSaidaFerramenta">Observações</label>
+                        <textarea id="observacoesSaidaFerramenta" placeholder="Observações sobre a saída..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-bloco">Confirmar Saída</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- REGISTRO DEVOLUÇÃO FERRAMENTA -->
+        <div id="telaRegistroDevolucaoFerramenta" class="tela">
+            <div class="container">
+                <header class="header-volta">
+                    <button class="btn-voltar" onclick="voltarParaMenuFerramentas()">← Voltar</button>
+                    <h2>Registrar Devolução de Ferramenta</h2>
+                </header>
+
+                <form id="formRegistroDevolucaoFerramenta" class="formulario">
+                    <div class="grupo-form">
+                        <label for="ferramentaDevolucao">Selecionar Ferramenta em Uso *</label>
+                        <select id="ferramentaDevolucao" required>
+                            <option value="">-- Escolha uma ferramenta em uso --</option>
+                        </select>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="nomeFuncDevolucaoFerramenta">Funcionário que Devolveu *</label>
+                        <input type="text" id="nomeFuncDevolucaoFerramenta" placeholder="Ex: João Silva" required>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="dataHoraDevolucaoFerramenta">Data e Hora *</label>
+                        <input type="datetime-local" id="dataHoraDevolucaoFerramenta" required>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="condicaoDevolucaoFerramenta">Condição ao Retornar *</label>
+                        <select id="condicaoDevolucaoFerramenta" required>
+                            <option value="">-- Selecione --</option>
+                            <option value="nova">Nova</option>
+                            <option value="usada">Usada</option>
+                            <option value="precisa-reparar">Precisa Reparar</option>
+                        </select>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="algumDanoFerramenta">Algum dano? *</label>
+                        <select id="algumDanoFerramenta" required onchange="mostrarCampoDanoFerramenta()">
+                            <option value="">-- Selecione --</option>
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
+                        </select>
+                    </div>
+
+                    <div id="descricaoDanoFerramenta" class="grupo-form" style="display: none;">
+                        <label for="descricaoDanoTextoFerramenta">Descreva o dano</label>
+                        <textarea id="descricaoDanoTextoFerramenta" placeholder="Descreva o dano..."></textarea>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="observacoesDevolucaoFerramenta">Observações</label>
+                        <textarea id="observacoesDevolucaoFerramenta" placeholder="Observações sobre a devolução..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-warning btn-bloco">Confirmar Devolução</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- LISTA FERRAMENTAS -->
+        <div id="telaListaFerramenta" class="tela">
+            <div class="container">
+                <header class="header-volta">
+                    <button class="btn-voltar" onclick="voltarParaMenuFerramentas()">← Voltar</button>
+                    <h2>Lista de Ferramentas</h2>
+                </header>
+
+                <div id="listaFerramentas" class="lista-items"></div>
+                <div id="mensagemVaziaFerramentas" class="mensagem-vazia">
+                    <p>Nenhuma ferramenta cadastrada ainda.</p>
+                    <button class="btn btn-primary" onclick="irParaTela('telaCadastroFerramenta')">Cadastrar Ferramenta</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- FERRAMENTAS EM USO -->
+        <div id="telaFerramentasEmUso" class="tela">
+            <div class="container">
+                <header class="header-volta">
+                    <button class="btn-voltar" onclick="voltarParaMenuFerramentas()">← Voltar</button>
+                    <h2>Ferramentas em Uso</h2>
+                </header>
+
+                <div id="listaFerramentasEmUso" class="lista-items"></div>
+                <div id="mensagemVaziaFerramentasEmUso" class="mensagem-vazia">
+                    <p>Nenhuma ferramenta em uso no momento.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- HISTÓRICO FERRAMENTAS -->
+        <div id="telaHistoricoFerramenta" class="tela">
+            <div class="container">
+                <header class="header-volta">
+                    <button class="btn-voltar" onclick="voltarParaMenuFerramentas()">← Voltar</button>
+                    <h2>Histórico Geral de Ferramentas</h2>
+                </header>
+
+                <div class="filtros">
+                    <button class="btn btn-pequeno" onclick="filtrarHistoricoFerramenta('todos')">Todos</button>
+                    <button class="btn btn-pequeno" onclick="filtrarHistoricoFerramenta('saida')">Saídas</button>
+                    <button class="btn btn-pequeno" onclick="filtrarHistoricoFerramenta('devolucao')">Devoluções</button>
+                </div>
+
+                <div id="listaHistoricoFerramenta" class="lista-items"></div>
+                <div id="mensagemHistoricoVazioFerramenta" class="mensagem-vazia">
+                    <p>Nenhum registro no histórico.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL DE CONFIRMAÇÃO -->
+        <div id="modalConfirmacao" class="modal">
+            <div class="modal-conteudo">
+                <h3 id="modalTitulo">Confirmar</h3>
+                <p id="modalMensagem">Tem certeza?</p>
+                <div class="modal-botoes">
+                    <button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>
+                    <button class="btn btn-danger" id="btnConfirmarAcao">Confirmar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- NOTIFICAÇÃO -->
+        <div id="notificacao" class="notificacao"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
